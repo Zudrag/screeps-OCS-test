@@ -4,11 +4,12 @@ var mod = {
         Room.extend = require('./room').extend;
         Spawn.extend = require('./spawn').extend;
         _.assign(global, params);
+        global.Paths = require('./paths');
         _.assign(global, {
             Extensions: require('./extensions'),
             Population: require('./population'),
             FlagDir: require('./flagDir'),    
-            Tower: require('./tower'), 
+            Tower: require(global.Paths.tower), 
             FLAG_COLOR: {
                 invade: { // destroy everything enemy in the room
                     color: COLOR_RED, 
