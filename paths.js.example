@@ -1,0 +1,59 @@
+var paths = {
+    action: {
+        building: './creep.action.building', 
+        charging: './creep.action.charging',
+        claiming: './creep.action.claiming',
+        reserving: './creep.action.reserving',
+        defending: './creep.action.defending',
+        dismantling: './creep.action.dismantling',
+        feeding: './creep.action.feeding', 
+        fortifying: './creep.action.fortifying', 
+        fueling: './creep.action.fueling', 
+        guarding: './creep.action.guarding', 
+        harvesting: './creep.action.harvesting',
+        healing: './creep.action.healing',
+        idle: './creep.action.idle',
+        invading: './creep.action.invading',
+        picking: './creep.action.picking', 
+        repairing: './creep.action.repairing', 
+        travelling: './creep.action.travelling', 
+        storing: './creep.action.storing', 
+        uncharging: './creep.action.uncharging',
+        upgrading: './creep.action.upgrading', 
+        withdrawing: './creep.action.withdrawing',
+        robbing:'./creep.action.robbing',
+        reallocating:'./creep.action.reallocating'
+    },
+    behaviour: {
+        claimer: './creep.behaviour.claimer',
+        hauler: './creep.behaviour.hauler',
+        healer: './creep.behaviour.healer',
+        melee: './creep.behaviour.melee',
+        miner: './creep.behaviour.miner',
+        mineralMiner: './creep.behaviour.mineralMiner',
+        pioneer: './creep.behaviour.pioneer',
+        privateer: './creep.behaviour.privateer',
+        ranger: './creep.behaviour.ranger',
+        upgrader: './creep.behaviour.upgrader',
+        warrior: './creep.behaviour.warrior',
+        worker: './creep.behaviour.worker'
+    },
+    setup: {
+        claimer: './creep.setup.claimer',
+        hauler: './creep.setup.hauler',
+        healer: './creep.setup.healer', 
+        melee: './creep.setup.melee',
+        miner: './creep.setup.miner',
+        mineralMiner: './creep.setup.mineralMiner',
+        pioneer: './creep.setup.pioneer',
+        privateer: './creep.setup.privateer',
+        ranger: './creep.setup.ranger',
+        upgrader: './creep.setup.upgrader',
+        warrior: './creep.setup.warrior',
+        worker: './creep.setup.worker'
+    },
+    tower: './tower'
+}
+
+module.exports = paths;
+
