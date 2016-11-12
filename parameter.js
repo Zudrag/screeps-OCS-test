@@ -26,13 +26,13 @@ var mod = {
     //MAX_SELL_RANGE: 60, 
     TERMINAL_ENERGY: 100000, 
     MIN_SELL_RATIO: {
-        'H': 1,
-        'O': 1,
-        'U': 1.5,
-        'L': 1.5,
-        'K': 1.5,
-        'Z': 1.5,
-        'X': 2
+        'H': 0.8,
+        'O': 0.8,
+        'U': 1,
+        'L': 1,
+        'K': 1,
+        'Z': 1,
+        'X': 1.1
     },
     MAX_REPAIR_LIMIT: { // Limits how high structures get repaired by towers, regarding RCL
         1: 1000,
@@ -73,7 +73,7 @@ var mod = {
     NOTIFICATE_INVADER: false, // Also log common 'Invader' hostiles
     COMBAT_CREEPS_RESPECT_RAMPARTS: false, // causes own creeps not to leave through ramparts
     COST_MATRIX_VALIDITY: 1000,
-    PLAYER_WHITELIST: ['cyberblast','SirLovi','Asku','Kazume','Noxeth','MrDave','Telemac','Xephael','Zoiah','fsck-u','Kansir','FaceWound','forkmantis','DoctorPC','Vultured'] 
+    PLAYER_WHITELIST: ['cyberblast','SirLovi','Asku','Kazume','Noxeth','MrDave','Telemac','Xephael','Zoiah','fsck-u','Kansir','FaceWound','forkmantis','DoctorPC','Vultured', 'C00k1e_93','Migaaresno'] 
     // Don't attack. Must be a member of OCS for permanent whitelisting in git repository. But you can change your own copy... Please ask if you are interested in joining OCS :)
 }
 module.exports = mod;
