@@ -218,7 +218,7 @@ var mod = {
                 let flags = _.values(Game.flags).filter(flag => flag.pos.roomName == roomName && flag.color == COLOR_BROWN);
                 let val = Memory.pavementArt[roomName] === undefined ? '' : Memory.pavementArt[roomName];
                 let posMap = flag => 'x'+flag.pos.x+'y'+flag.pos.y;
-                Memory.pavementArt[roomName] = val + flags.map(posMap).join('');
+                Memory.pavementArt[roomName] = val + flags.map(posMap).join('')+'x';
                 let setSite = flag => flag.room.createConstructionSite(flag, STRUCTURE_WALL);
                 flags.forEach(setSite);
                 let remove = flag => flag.remove();

@@ -191,10 +191,10 @@ var mod = {
                                 that.all.filter(
                                     structure => (
                                         structure.hits < structure.hitsMax && 
-                                        (!that.room.controller || !that.room.controller.my || structure.hits < MAX_REPAIR_LIMIT[that.room.controller.level] || structure.hits < LIMIT_URGENT_REPAIRING + (3*(DECAY_AMOUNT[structure.structureType] || 0))) && 
+                                        ( !that.room.controller || !that.room.controller.my || structure.hits < MAX_REPAIR_LIMIT[that.room.controller.level] || structure.hits < (LIMIT_URGENT_REPAIRING + (3*(DECAY_AMOUNT[structure.structureType] || 0)))) && 
                                         ( !DECAYABLES.includes(structure.structureType) || (structure.hitsMax - structure.hits) > GAP_REPAIR_DECAYABLE ) && 
                                         ( structure.towers === undefined || structure.towers.length == 0) && 
-                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y) < 0 )
+                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y+'x') < 0 )
                                     )
                                 ),
                                 'hits'
@@ -226,7 +226,7 @@ var mod = {
                                         structure.hits < MAX_FORTIFY_LIMIT[that.room.controller.level] && 
                                         ( structure.structureType != STRUCTURE_CONTAINER || structure.hits < MAX_FORTIFY_CONTAINER ) &&
                                         ( !DECAYABLES.includes(structure.structureType) || (structure.hitsMax - structure.hits) > GAP_REPAIR_DECAYABLE*3 ) && 
-                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y) < 0 )
+                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y+'x') < 0 )
                                     )
                                 ), 
                                 'hits'
