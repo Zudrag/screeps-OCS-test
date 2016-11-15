@@ -40,8 +40,8 @@ var mod = {
         Spawn.prototype.create = function(body, name, type, destiny){
             if( body.length == 0 ) return false;
             var newName = this.createCreep(body, name, null);
+            let cost = 0;
             if( name == newName || translateErrorCode(newName) === undefined ){
-                let cost = 0;
                 body.forEach(function(part){
                     cost += PART_COSTS[part];
                 });
