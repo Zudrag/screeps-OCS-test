@@ -40,8 +40,8 @@ var mod = {
         Spawn.prototype.create = function(body, name, type, destiny){
             if( body.length == 0 ) return false;
             var newName = this.createCreep(body, name, null);
-            let cost = 0;
             if( name == newName || translateErrorCode(newName) === undefined ){
+                let cost = 0;
                 body.forEach(function(part){
                     cost += PART_COSTS[part];
                 });
@@ -56,7 +56,7 @@ var mod = {
                 if(CENSUS_ANNOUNCEMENTS) console.log( dye(CRAYON.system, this.pos.roomName  + ' &gt; ') + dye(CRAYON.birth, 'Good morning ' + newName + '!') );
                 return true;
             }
-            if( DEBUG ) console.log( dye(CRAYON.system, this.pos.roomName + ' &gt; ') + dye(CRAYON.error, 'Offspring failed: ' + translateErrorCode(newName) + '<br/> - body: ' + JSON.stringify(_.countBy(body)) + '<br/> - name: ' + name + '<br/> - type:  ' + type + '<br/> - cost: ' + cost + '<br/> - destiny: ' + destiny) );
+            if( DEBUG ) console.log( dye(CRAYON.system, this.pos.roomName + ' &gt; ') + dye(CRAYON.error, 'Offspring failed: ' + translateErrorCode(newName) + '<br/> - body: ' + JSON.stringify(_.countBy(body)) + '<br/> - name: ' + name + '<br/> - type:  ' + type + '<br/> - destiny: ' + destiny) );
             return false;
         };
         Spawn.loop = function(){      
