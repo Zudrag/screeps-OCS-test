@@ -24,11 +24,6 @@ var mod = {
                         secondaryColor: COLOR_YELLOW,
                         filter: {'color': COLOR_RED, 'secondaryColor': COLOR_YELLOW }
                     },
-					robbing: { // take energy from foreign structures with robber
-                        color: COLOR_RED,
-                        secondaryColor: COLOR_PURPLE,
-                        filter: {'color': COLOR_RED, 'secondaryColor': COLOR_PURPLE }
-                    },
                 },
                 //COLOR_PURPLE,
                 //COLOR_BLUE,
