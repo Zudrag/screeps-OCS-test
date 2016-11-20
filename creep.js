@@ -54,7 +54,6 @@ var mod = {
                 'privateer',
                 'ranger',
                 'upgrader',
-                'warrior',
                 'worker'
             ];
             _.forEach(behaviourList, function(behaviour) {
@@ -80,7 +79,6 @@ var mod = {
                 'privateer',
                 'ranger',
                 'upgrader',
-                'warrior',
                 'worker'
             ];
             _.forEach(setupList, function(setup) {
@@ -134,7 +132,6 @@ var mod = {
             privateer: require(Memory.paths.behaviour.privateer),
             ranger: require(Memory.paths.behaviour.ranger),
             upgrader: require(Memory.paths.behaviour.upgrader),
-            warrior: require(Memory.paths.behaviour.warrior),
             worker: require(Memory.paths.behaviour.worker)
         };
         Creep.setup = {
@@ -148,7 +145,6 @@ var mod = {
             privateer: require(Memory.paths.setup.privateer),
             ranger: require(Memory.paths.setup.ranger),
             upgrader: require(Memory.paths.setup.upgrader),
-            warrior: require(Memory.paths.setup.warrior),
             worker: require(Memory.paths.setup.worker)
         };
         Creep.loop = function(){
