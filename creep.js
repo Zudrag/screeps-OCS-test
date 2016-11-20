@@ -1,57 +1,155 @@
 var mod = {
     extend: function(){     
+        if (Memory.paths === undefined) {
+            Memory.paths = {
+                action: {},
+                behaviour: {},
+                setup: {},
+            }
+            var actionList = [
+                'building',
+                'charging',
+                'claiming',
+                'reserving',
+                'defending',
+                'dismantling',
+                'feeding',
+                'fortifying',
+                'fueling',
+                'guarding',
+                'harvesting',
+                'healing',
+                'idle',
+                'invading',
+                'picking',
+                'reallocating',
+                'repairing',
+                'robbing',
+                'travelling',
+                'storing',
+                'uncharging',
+                'upgrading',
+                'withdrawing'
+            ];
+            _.forEach(actionList, function(action) {
+                var path = './custom.creep.action.' + action;
+                try {
+                    var a = require(path);
+                }
+                catch (e) {
+                    path = './creep.action.' + action
+                }
+                finally {
+                    Memory.paths.action[action] = path;
+                }
+            });
+            var behaviourList = [
+                'claimer',
+                'hauler',
+                'healer',
+                'melee',
+                'miner',
+                'mineralMiner',
+                'pioneer',
+                'privateer',
+                'ranger',
+                'upgrader',
+                'warrior',
+                'worker'
+            ];
+            _.forEach(behaviourList, function(behaviour) {
+                var path = './custom.creep.behaviour.' + behaviour;
+                try {
+                    var a = require(path);
+                }
+                catch (e) {
+                    path = './creep.behaviour.' + behaviour
+                }
+                finally {
+                    Memory.paths.behaviour[behaviour] = path;
+                }
+            });
+            var setupList = [
+                'claimer',
+                'hauler',
+                'healer',
+                'melee',
+                'miner',
+                'mineralMiner',
+                'pioneer',
+                'privateer',
+                'ranger',
+                'upgrader',
+                'warrior',
+                'worker'
+            ];
+            _.forEach(setupList, function(setup) {
+                var path = './custom.creep.setup.' + setup;
+                try {
+                    var a = require(path);
+                }
+                catch (e) {
+                    path = './creep.setup.' + setup
+                }
+                finally {
+                    Memory.paths.setup[setup] = path;
+                }
+            });
+        }
         Creep.Action = require('./creep.Action'),
         Creep.Setup = require('./creep.Setup'),
         Creep.action = {
-            building: require(Paths.action.building), 
-            charging: require(Paths.action.charging),
-            claiming: require(Paths.action.claiming),
-            reserving: require(Paths.action.reserving),
-            defending: require(Paths.action.defending),
-            dismantling: require(Paths.action.dismantling),
-            feeding: require(Paths.action.feeding), 
-            fortifying: require(Paths.action.fortifying), 
-            fueling: require(Paths.action.fueling), 
-            guarding: require(Paths.action.guarding), 
-            harvesting: require(Paths.action.harvesting),
-            healing: require(Paths.action.healing),
-            idle: require(Paths.action.idle),
-            invading: require(Paths.action.invading),
-            picking: require(Paths.action.picking), 
-            repairing: require(Paths.action.repairing), 
-            travelling: require(Paths.action.travelling), 
-            storing: require(Paths.action.storing), 
-            uncharging: require(Paths.action.uncharging),
-            upgrading: require(Paths.action.upgrading), 
-            withdrawing: require(Paths.action.withdrawing),
-            robbing:require(Paths.action.robbing),
-            reallocating:require(Paths.action.reallocating)
+            building: require(Memory.paths.action.building), 
+            charging: require(Memory.paths.action.charging),
+            claiming: require(Memory.paths.action.claiming),
+            reserving: require(Memory.paths.action.reserving),
+            defending: require(Memory.paths.action.defending),
+            dismantling: require(Memory.paths.action.dismantling),
+            feeding: require(Memory.paths.action.feeding), 
+            fortifying: require(Memory.paths.action.fortifying), 
+            fueling: require(Memory.paths.action.fueling), 
+            guarding: require(Memory.paths.action.guarding), 
+            harvesting: require(Memory.paths.action.harvesting),
+            healing: require(Memory.paths.action.healing),
+            idle: require(Memory.paths.action.idle),
+            invading: require(Memory.paths.action.invading),
+            picking: require(Memory.paths.action.picking), 
+            repairing: require(Memory.paths.action.repairing), 
+            travelling: require(Memory.paths.action.travelling), 
+            storing: require(Memory.paths.action.storing), 
+            uncharging: require(Memory.paths.action.uncharging),
+            upgrading: require(Memory.paths.action.upgrading), 
+            withdrawing: require(Memory.paths.action.withdrawing),
+            robbing:require(Memory.paths.action.robbing),
+            reallocating:require(Memory.paths.action.reallocating)
         };
         Creep.behaviour = {
-            claimer: require(Paths.behaviour.claimer),
-            hauler: require(Paths.behaviour.hauler),
-            healer: require(Paths.behaviour.healer),
-            melee: require(Paths.behaviour.melee),
-            miner: require(Paths.behaviour.miner),
-            mineralMiner: require(Paths.behaviour.mineralMiner),
-            pioneer: require(Paths.behaviour.pioneer),
-            privateer: require(Paths.behaviour.privateer),
-            ranger: require(Paths.behaviour.ranger),
-            upgrader: require(Paths.behaviour.upgrader),
-            worker: require(Paths.behaviour.worker)
+            claimer: require(Memory.paths.behaviour.claimer),
+            hauler: require(Memory.paths.behaviour.hauler),
+            healer: require(Memory.paths.behaviour.healer),
+            melee: require(Memory.paths.behaviour.melee),
+            miner: require(Memory.paths.behaviour.miner),
+            mineralMiner: require(Memory.paths.behaviour.mineralMiner),
+            pioneer: require(Memory.paths.behaviour.pioneer),
+            privateer: require(Memory.paths.behaviour.privateer),
+            ranger: require(Memory.paths.behaviour.ranger),
+            upgrader: require(Memory.paths.behaviour.upgrader),
+            warrior: require(Memory.paths.behaviour.warrior),
+            worker: require(Memory.paths.behaviour.worker)
         };
         Creep.setup = {
-            claimer: require(Paths.setup.claimer),
-            hauler: require(Paths.setup.hauler),
-            healer: require(Paths.setup.healer), 
-            melee: require(Paths.setup.melee),
-            miner: require(Paths.setup.miner),
-            mineralMiner: require(Paths.setup.mineralMiner),
-            pioneer: require(Paths.setup.pioneer),
-            privateer: require(Paths.setup.privateer),
-            ranger: require(Paths.setup.ranger),
-            upgrader: require(Paths.setup.upgrader),
-            worker: require(Paths.setup.worker)
+            claimer: require(Memory.paths.setup.claimer),
+            hauler: require(Memory.paths.setup.hauler),
+            healer: require(Memory.paths.setup.healer), 
+            melee: require(Memory.paths.setup.melee),
+            miner: require(Memory.paths.setup.miner),
+            mineralMiner: require(Memory.paths.setup.mineralMiner),
+            pioneer: require(Memory.paths.setup.pioneer),
+            privateer: require(Memory.paths.setup.privateer),
+            ranger: require(Memory.paths.setup.ranger),
+            upgrader: require(Memory.paths.setup.upgrader),
+            warrior: require(Memory.paths.setup.warrior),
+            worker: require(Memory.paths.setup.worker)
         };
         Creep.loop = function(){
             var run = creep => creep.run();

@@ -29,8 +29,13 @@ var mod = {
                     configurable: true,
                     get: function() {
                         if( _.isUndefined(this._controller) ){ 
-                            let byType = c => c.controller == true;
-                            this._controller = _.filter(this.all, byType);
+                            if( this.room.controller.memory.storage ){
+                                this._controller = [Game.getObjectById(this.room.controller.memory.storage)];
+                                if( !this._controller ) delete this.room.controller.memory.storage;
+                            } else {
+                                let byType = c => c.controller == true;
+                                this._controller = _.filter(this.all, byType);
+                            }
                         }
                         return this._controller;
                     }
@@ -191,10 +196,10 @@ var mod = {
                                 that.all.filter(
                                     structure => (
                                         structure.hits < structure.hitsMax && 
-                                        (!that.room.controller || !that.room.controller.my || structure.hits < MAX_REPAIR_LIMIT[that.room.controller.level] || structure.hits < LIMIT_URGENT_REPAIRING + (3*(DECAY_AMOUNT[structure.structureType] || 0))) && 
+                                        ( !that.room.controller || !that.room.controller.my || structure.hits < MAX_REPAIR_LIMIT[that.room.controller.level] || structure.hits < (LIMIT_URGENT_REPAIRING + (3*(DECAY_AMOUNT[structure.structureType] || 0)))) && 
                                         ( !DECAYABLES.includes(structure.structureType) || (structure.hitsMax - structure.hits) > GAP_REPAIR_DECAYABLE ) && 
                                         ( structure.towers === undefined || structure.towers.length == 0) && 
-                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y) < 0 )
+                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y+'x') < 0 )
                                     )
                                 ),
                                 'hits'
@@ -226,7 +231,7 @@ var mod = {
                                         structure.hits < MAX_FORTIFY_LIMIT[that.room.controller.level] && 
                                         ( structure.structureType != STRUCTURE_CONTAINER || structure.hits < MAX_FORTIFY_CONTAINER ) &&
                                         ( !DECAYABLES.includes(structure.structureType) || (structure.hitsMax - structure.hits) > GAP_REPAIR_DECAYABLE*3 ) && 
-                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y) < 0 )
+                                        ( Memory.pavementArt[that.room.name] === undefined || Memory.pavementArt[that.room.name].indexOf('x'+structure.pos.x+'y'+structure.pos.y+'x') < 0 )
                                     )
                                 ), 
                                 'hits'
@@ -920,8 +925,27 @@ var mod = {
                 });
                 let assignContainer = s => s.memory.container = cont.id;
                 source.forEach(assignContainer);  
+                mineral.forEach(assignContainer);  
             };
             containers.forEach(add);
+
+            if( this.terminal ) {
+                let source = this.terminal.pos.findInRange(this.sources, 2);
+                let mineral = this.terminal.pos.findInRange(this.minerals, 2);
+                let assignTerminal = s => s.memory.terminal = this.terminal.id;
+                source.forEach(assignTerminal);  
+                mineral.forEach(assignTerminal);  
+            }
+            if( this.storage ) {
+                let source = this.storage.pos.findInRange(this.sources, 2);
+                let mineral = this.storage.pos.findInRange(this.minerals, 2);
+                let assignStorage = s => s.memory.storage = this.storage.id;
+                source.forEach(assignStorage);  
+                mineral.forEach(assignStorage);
+                
+                if( this.storage.pos.getRangeTo(this.controller) < 4 ) 
+                    this.controller.memory.storage = this.storage.id;
+            }
         };
         Room.prototype.saveLinks = function(){
             if( _.isUndefined(this.memory.links) ){ 
